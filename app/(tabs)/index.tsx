@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import {
   ActivityIndicator,
@@ -23,6 +23,12 @@ export default function DashboardScreen() {
   const isDark = scheme === 'dark';
   const { transactions, loading, balance, totalIncome, totalExpense, deleteTransaction, reload } =
     useTransactions();
+
+  useFocusEffect(
+    useCallback(() => {
+      reload();
+    }, [reload])
+  );
 
   const recent = transactions
     .slice()

@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import {
   FlatList,
@@ -44,8 +44,14 @@ export default function TransactionsScreen() {
   const router = useRouter();
   const scheme = useColorScheme() ?? 'light';
   const isDark = scheme === 'dark';
-  const { transactions, deleteTransaction } = useTransactions();
+  const { transactions, deleteTransaction, reload } = useTransactions();
   const [filter, setFilter] = useState<Filter>('all');
+
+  useFocusEffect(
+    useCallback(() => {
+      reload();
+    }, [reload])
+  );
 
   const filtered = transactions
     .slice()
