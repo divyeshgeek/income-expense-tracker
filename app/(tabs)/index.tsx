@@ -3,12 +3,12 @@ import { useCallback } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import { BalanceCard } from '@/components/balance-card';
@@ -71,7 +71,7 @@ export default function DashboardScreen() {
   }
 
   return (
-    <SafeAreaView style={[styles.safe, isDark && styles.bgDark]}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={[styles.safe, isDark && styles.bgDark]}>
       <FlatList
         data={recent}
         keyExtractor={(item) => item.id}

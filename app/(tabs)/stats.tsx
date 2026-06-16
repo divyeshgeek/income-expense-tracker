@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import { useTransactions } from '@/hooks/use-transactions';
@@ -65,7 +65,7 @@ export default function StatsScreen() {
   const isCurrentMonth = month === now.getMonth() && year === now.getFullYear();
 
   return (
-    <SafeAreaView style={[styles.safe, isDark && styles.bgDark]}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={[styles.safe, isDark && styles.bgDark]}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         {/* Header */}
         <Text style={[styles.title, isDark && styles.textDark]}>Statistics</Text>

@@ -2,12 +2,12 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import {
   FlatList,
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import { TransactionItem } from '@/components/transaction-item';
@@ -93,7 +93,7 @@ export default function TransactionsScreen() {
   ];
 
   return (
-    <SafeAreaView style={[styles.safe, isDark && styles.bgDark]}>
+    <SafeAreaView edges={['top', 'left', 'right']} style={[styles.safe, isDark && styles.bgDark]}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={[styles.title, isDark && styles.textDark]}>Transactions</Text>
